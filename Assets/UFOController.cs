@@ -37,6 +37,16 @@ public class UFOController : MonoBehaviour
         }
 
         rigidbody2D.AddForce(force2D);
+
+        // 新增：按下 Esc 退出應用程式
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false; // 在編輯器中停止播放
+        #else
+                Application.Quit(); // Build 出來的執行檔會關閉程式
+        #endif
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
